@@ -1,0 +1,12 @@
+<div class="jumbotron text-center">
+	<h1>Welcome to the chat room!</h1>
+
+	<div ng-if="!main.loggedIn">
+		<a href="/login" class="btn btn-primary">Login</a>
+	</div>
+
+	<div ng-if="main.loggedIn">
+		<p>Go to the chatroom</p>
+		<a href="/users" class="btn btn-primary">Chat</a>
+	</div>
+</div>

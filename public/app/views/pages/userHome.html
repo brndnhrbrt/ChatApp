@@ -1,0 +1,179 @@
+<style>
+	h4 {
+		color: #fff;
+	}
+
+	form { 
+		background: #333333;  
+		/*position: fixed; */
+		/*bottom: 0px; */
+		width: 100%; 
+		/*padding-right: 10%;*/
+	}
+
+	.center {
+		text-align: center;
+	}
+
+	form input { 
+		color: #333;
+		font-size: 14px;
+		border: 0; 
+		padding: 12px; 
+		width: 40%; 
+		height: 50px;
+		margin-right: .5%; 
+	}
+
+	form button { 
+		color: #333;
+		font-size: 12px;
+		height: 50px;
+		min-width: 50px;
+		width: 15%;
+		 background: #009999;
+		 border: none; 
+		 /*padding: 10px; */
+	}
+
+	.message-panel {
+		background-color: #333;
+	}
+
+	.message-panel .panel-heading {
+		height: 55px;
+		background-color: #262626;
+	}
+
+	.message-panel .panel-body{
+		font-size: 16px;
+		color: #333;
+		background-color: #fff;
+	}
+
+	.message-panel .panel-heading h5{
+		color: #009999;
+	}
+
+	.message {
+		padding: 20px;
+	}
+
+	.half-input {
+		display: inline-block;
+		width: 45%;
+		margin: 0;
+	}
+
+	.text-input-form {
+		height: 48px;
+		width: 50%;
+		margin-bottom: 20px;
+	}
+
+	.form-small {
+		width: 30%;
+	}
+
+	.img-container {
+		padding: 10px;
+		width: 100%;
+		max-height: 70%;
+		text-align: center;
+	}
+
+	.img-container img{
+		text-align: center;
+		max-width: 100%;
+		
+	}
+
+	.date {
+		color: #fff;
+	}
+
+	.info-box {
+		width: 70%;
+		padding-left: 25%;
+	}
+
+	.info-box h5{
+		color: #fff;
+	}
+
+	.name {
+		color: #333;
+	}
+
+	.user-panel {
+		background-color: #333;
+	}
+
+	.user-panel .panel-heading {
+		height: auto;
+		background-color: #262626;
+	}
+
+	.user-panel .panel-body{
+		font-size: 16px;
+		color: #333;
+		background-color: #fff;
+	}
+
+	.user-panel .panel-heading h5{
+		color: #009999;
+	}
+
+	.my-btn-users {
+		width: 100%;
+	}
+
+</style>
+
+<div class="info-box center">
+	<button ng-click="chat.hideUserPanel()" type="submit" class="btn btn-primary my-btn  my-btn-users"><span class="glyphicon glyphicon glyphicon-user"> {{ chat.userCount }}</span></button>
+	<br><br>
+	<div class="panel panel-default user-panel {{ chat.userPanelStatus }}">
+		<div class="panel-heading">
+			<div class="center"><h5>User List</h5></div>
+		</div>
+		<div class="panel-body">
+			<div class="names" ng-repeat="name in chat.usernames">
+				{{ name }}
+			</div>
+		</div>
+	</div>
+</div>
+
+<br><br><br>
+
+<div class="center chat-box">
+	<form ng-submit="chat.addMessage(main.user.username)">
+		{{ chat.setName(main.user.username) }}
+		<input class="text-input-form" autocomplete="off" placeholder="Message" ng-model="chat.messageData.message"/>
+		<input class="text-input-form form-small"  autocomplete="off" placeholder="Image" ng-model="chat.messageData.image"/>
+		<button type="submit" class="btn btn-primary pull-right my-btn"><span class="glyphicon glyphicon glyphicon-plus"></span></button>
+	</form>
+</div>
+
+<br><br><br>
+
+<div class="message-container center">
+	<div ng-repeat="message in chat.messages | reverse">
+		<div class="panel panel-default message-panel">
+			<div class="panel-heading"><div class="pull-left"><h5>{{ message.username }}</h5></div>
+			<div class="pull-right date">{{ message.date }}</div>
+			<br></div>
+		  	<div class="panel-body">
+		  		<div class="message">
+					{{ message.message }}
+				</div>
+				<div class="img-container">
+                                	<a href="{{message.image}}"><img src="{{ message.image }}"></a>
+                                </div>
+		 	 </div>
+		</div>
+	</div>
+</div>
+
+
